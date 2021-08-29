@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import { Col, Container, Row } from "react-bootstrap";
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
+import IfCustom from '../customTags/IfCustom';
+import CropResult from './CropResult';
 
 class PictureCrop extends PureComponent {
 
@@ -12,6 +14,15 @@ class PictureCrop extends PureComponent {
           width: 0
         }
     };
+
+    resetCrop = () => {
+        this.setState({
+            crop: {
+                unit: '%',
+                width: 0
+              }
+        })
+    }
 
     onSelectFile = (e) => {
         if (e.target.files && e.target.files.length > 0) {
@@ -87,7 +98,7 @@ class PictureCrop extends PureComponent {
                     this.fileUrl = window.URL.createObjectURL(blob);
                     resolve(this.fileUrl);
                 },
-                'image/jpeg',
+                'image/png',
                 1
             );
         });
@@ -118,11 +129,9 @@ class PictureCrop extends PureComponent {
                         )}
                     </Col>
                     <Col>
-                        {croppedImageUrl && (
-                            <img alt="Crop" style={{ maxWidth: '250px' }} src={croppedImageUrl} />
-                        )}
-                        <p> {JSON.stringify(crop.width)}</p>
-                        <p> {JSON.stringify(crop.height)}</p>
+                        <IfCustom condition={src != null}>
+                            <CropResult resetCrop={this.resetCrop} cropData={crop} cropImage={croppedImageUrl}></CropResult>
+                        </IfCustom>
                     </Col>
                 </Row>
             </Container>
