@@ -58,9 +58,9 @@ class CropResult extends React.Component {
     render() {
         const { labelNameBool,labelKeyBool,labelValueBool,result} = this.state;
         return (
-            <Container fluid>
+            <Container fluid >
 
-                <Row>
+                <Row style={{border:'1px black dotted' , padding: '10px'}}>
                     <IfCustom condition={!labelNameBool}>
                         <InputGroup size="sm" className="mb-3">
                             <InputGroup.Text id="inputGroup-sizing-sm">Enter Label Name</InputGroup.Text>

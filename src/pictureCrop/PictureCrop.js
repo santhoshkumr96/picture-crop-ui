@@ -119,6 +119,7 @@ class PictureCrop extends PureComponent {
                     <Col>
                         {src && (
                             <ReactCrop
+                            style={{border:'1px black dotted'}}
                                 src={src}
                                 crop={crop}
                                 ruleOfThirds
