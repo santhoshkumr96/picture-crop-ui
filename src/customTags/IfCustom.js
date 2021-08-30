@@ -12,7 +12,7 @@ class IfCustom extends React.Component{
         }
         if(this.props.condition == false || this.props.condition == null){
             return(
-                <div>
+                <div style={{display:'none'}}>
  
                 </div>
             )
