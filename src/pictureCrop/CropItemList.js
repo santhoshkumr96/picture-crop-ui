@@ -11,18 +11,17 @@ class CropItemList extends React.Component {
 //  1. profile name - to understand company name -- done
 //  2. page number - manual (can try to auto pop) -- done
 //  3. language - upto three for initial load (hard code)
-//  4. data type - (text, number should be selected by the user) -- text, number, date and others 
+//  4. data type - (text, number should be selected by the user) -- text, number, date and others  - done
 //  5. URL submit for testing in remote (pciture as stream and blob)    
 
     renderCropList(dataSet) {
         const result = [];
 
         const data = JSON.parse(dataSet);
-        console.log(dataSet)
-        console.log(data)
+
+        console.log(dataSet);
 
         for (const [key, value] of Object.entries(data)) {
-            console.log(key, value)
             result.push(
                 <Row style={{ border: '1px black dotted', padding: '10px', top: '20px' , margin: '10px' }}>
                     <div>
