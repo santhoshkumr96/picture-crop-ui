@@ -8,6 +8,11 @@ class CropItemList extends React.Component {
 
         this.renderCropList = this.renderCropList.bind(this);
     }
+//  1. profile name - to understand company name -- done
+//  2. page number - manual (can try to auto pop) -- done
+//  3. language - upto three for initial load (hard code)
+//  4. data type - (text, number should be selected by the user) -- text, number, date and others 
+//  5. URL submit for testing in remote (pciture as stream and blob)    
 
     renderCropList(dataSet) {
         const result = [];
