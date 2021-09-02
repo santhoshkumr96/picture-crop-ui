@@ -33,6 +33,7 @@ class CropResult extends React.Component {
         this.onDropDownSelectValue = this.onDropDownSelectValue.bind(this);
         this.onDropDownSelectKey = this.onDropDownSelectKey.bind(this);
         this.sendData = this.sendData.bind(this);
+        this.sendWholeImage = this.sendWholeImage.bind(this);
     }
 
 
@@ -45,6 +46,17 @@ class CropResult extends React.Component {
             }
         };
         axios.post(this.state.url, body, config);
+    }
+
+    sendWholeImage(){
+        const formData = new FormData()
+        formData.append('image', this.props.mainImage)
+        const config = {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }
+        };
+        axios.post(this.state.urlForImage,formData, config);
     }
 
     onDropDownSelectKey(eventKey, event) {
@@ -112,6 +124,13 @@ class CropResult extends React.Component {
                             <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" onChange={e => this.setState({ url: e.target.value })} />
                             <Button variant="outline-secondary" id="button-addon1" onClick={this.sendData}>
                                 sendData
+                            </Button>
+                        </InputGroup>
+                        <InputGroup size="sm" className="mb-3">
+                            <InputGroup.Text id="inputGroup-sizing-sm">Enter URL</InputGroup.Text>
+                            <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" onChange={e => this.setState({ urlForImage: e.target.value })} />
+                            <Button variant="outline-secondary" id="button-addon1" onClick={this.sendWholeImage}>
+                                send Image
                             </Button>
                         </InputGroup>
                     </Col>

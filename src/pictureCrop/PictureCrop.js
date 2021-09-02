@@ -28,7 +28,7 @@ class PictureCrop extends PureComponent {
         if (e.target.files && e.target.files.length > 0) {
             const reader = new FileReader();
             reader.addEventListener('load', () =>
-                this.setState({ src: reader.result })
+                this.setState({ src: reader.result , file : e.target.files[0] })
             );
             reader.readAsDataURL(e.target.files[0]);
         }
@@ -131,7 +131,7 @@ class PictureCrop extends PureComponent {
                     </Col>
                     <Col>
                         <IfCustom condition={src != null}>
-                            <CropResult resetCrop={this.resetCrop} cropData={crop} cropImage={croppedImageUrl}></CropResult>
+                            <CropResult mainImage={this.state.file} resetCrop={this.resetCrop} cropData={crop} cropImage={croppedImageUrl}></CropResult>
                         </IfCustom>
                     </Col>
                 </Row>
