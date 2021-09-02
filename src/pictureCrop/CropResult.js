@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { Container, Row, InputGroup, FormControl, Button, Col, Dropdown } from "react-bootstrap";
 import IfCustom from "../customTags/IfCustom";
@@ -20,8 +21,8 @@ class CropResult extends React.Component {
             labelValueBool: false,
             label: '',
             labelNameBool: false,
-            keyDropdown:'text',
-            valueDropdown:'text',
+            keyDropdown: 'text',
+            valueDropdown: 'text',
             result: {}
 
         };
@@ -31,10 +32,20 @@ class CropResult extends React.Component {
         this.onSelectLabelValue = this.onSelectLabelValue.bind(this);
         this.onDropDownSelectValue = this.onDropDownSelectValue.bind(this);
         this.onDropDownSelectKey = this.onDropDownSelectKey.bind(this);
+        this.sendData = this.sendData.bind(this);
     }
 
 
 
+    sendData(){
+        const body = this.state.result;
+        const config = {
+            headers: {
+                'Content-Type': 'application/JSON'
+            }
+        };
+        axios.post(this.state.url, body, config);
+    }
 
     onDropDownSelectKey(eventKey, event) {
         this.setState({
@@ -86,6 +97,7 @@ class CropResult extends React.Component {
             result: resultSet
         })
         this.props.resetCrop();
+
     }
 
     render() {
@@ -94,6 +106,18 @@ class CropResult extends React.Component {
             <Container fluid >
 
                 <Row style={{ border: '1px black dotted', padding: '10px' }}>
+                    <Col>
+                        <InputGroup size="sm" className="mb-3">
+                            <InputGroup.Text id="inputGroup-sizing-sm">Enter URL</InputGroup.Text>
+                            <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" onChange={e => this.setState({ url: e.target.value })} />
+                            <Button variant="outline-secondary" id="button-addon1" onClick={this.sendData}>
+                                sendData
+                            </Button>
+                        </InputGroup>
+                    </Col>
+                </Row>
+
+                <Row style={{ border: '1px black dotted', padding: '10px', marginTop: '20px' }}>
                     <Col>
                         <InputGroup size="sm" className="mb-3">
                             <InputGroup.Text id="inputGroup-sizing-sm">Enter Profile Name</InputGroup.Text>

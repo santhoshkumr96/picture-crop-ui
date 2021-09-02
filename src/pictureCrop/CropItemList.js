@@ -19,8 +19,6 @@ class CropItemList extends React.Component {
 
         const data = JSON.parse(dataSet);
 
-        console.log(dataSet);
-
         for (const [key, value] of Object.entries(data)) {
             result.push(
                 <Row style={{ border: '1px black dotted', padding: '10px', top: '20px' , margin: '10px' }}>
